@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 
+#define SPEED 75
+
 Maze::Maze(Matrix* mz)
 {
    maze = mz;
@@ -116,7 +118,7 @@ bool Maze::traverse(int row, int col)
 void Maze::mouseClicked(int x, int y)
 {}
 
-void Maze::draw(Cairo::RefPtr<Cairo::Context> cr, int width, int height)
+void Maze::draw(wxDC& dc, int width, int height)
 {
    int rows = maze->getNumRows();
    int cols = maze->getNumCols();
@@ -148,23 +150,23 @@ void Maze::draw(Cairo::RefPtr<Cairo::Context> cr, int width, int height)
 
          if (val == WALL)
          {
-            blackRect.draw(cr, x_pixel, y_pixel);
+            blackRect.draw(dc, x_pixel, y_pixel);
          }
          else if (val == SPACE)
          {
-            whiteRect.draw(cr, x_pixel, y_pixel);
+            whiteRect.draw(dc, x_pixel, y_pixel);
          }
          else if (val == TRIED)
          {
-            blueRect.draw(cr, x_pixel, y_pixel);
+            blueRect.draw(dc, x_pixel, y_pixel);
          }
          else if (val == BACKTRACK)
          {
-            redRect.draw(cr, x_pixel, y_pixel);
+            redRect.draw(dc, x_pixel, y_pixel);
          }
          else if (val == PATH)
          {
-            greenRect.draw(cr, x_pixel, y_pixel);
+            greenRect.draw(dc, x_pixel, y_pixel);
          }
       }
    }
